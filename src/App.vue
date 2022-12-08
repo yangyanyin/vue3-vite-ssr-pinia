@@ -1,26 +1,35 @@
 
 
 <template>
-  {{counterStore.name}}
+  <p>{{counterStore.hotWordsList}}</p>
   <Layout>
     <router-view ref="pageComponent"></router-view>
   </Layout>
+
 </template>
 <script setup>
 import { onServerPrefetch, onMounted } from 'vue';
 import Layout from './components/layout/Layout.vue'
-import product from './stores/modules/product'
+import { useNewProduct } from './stores/modules/product'
+import axios from 'axios'
+const counterStore = useNewProduct()
+// onMounted(() => {
+//   counterStore.name = 'asdadadadadad'
+// })
 
-const counterStore = product()
 
-onMounted(() => {
+const fetchOnServer = async () => {
+  await axios.get('https://api.patpat.com/v2/searches/hot_words').then(res => {
+    console.log('请求api获取数据1')
+    counterStore.hotWordsList = res.data.data.new_hot_words
+  })
   // counterStore.name = 'YYYYY'
-})
-
+  // Promise.all([])
+}
 onServerPrefetch(async () => {
-  counterStore.name = 'YYYYY'
   // 组件作为初始请求的一部分被渲染
   // 在服务器上预抓取数据，因为它比在客户端上更快。
+  await fetchOnServer()
 })
 </script>
 

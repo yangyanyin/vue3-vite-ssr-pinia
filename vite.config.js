@@ -105,6 +105,11 @@ export default defineConfig(({ command, ssrBuild }) => ({
       }
     })()
   ],
+  resolve: { // 设置项目文件导入路径
+    alias: {
+        '@': path.resolve(__dirname, './src')
+    }
+  },
   experimental: {
     renderBuiltUrl(filename, { hostType, type, ssr }) {
       if (ssr && type === 'asset' && hostType === 'js') {
