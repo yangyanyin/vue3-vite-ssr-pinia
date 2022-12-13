@@ -1,25 +1,24 @@
 <template>
   商品分类
   <br />
-  <p>{{counterStore.name}}</p>
-  <p v-for="(item, k) in counterStore.hotWords" :key="k">
+  <!-- <p>{{counterStore.name}}</p> -->
+  <p v-for="(item, k) in counterStore.hotWordsList" :key="k">
     {{item.word}}
   </p>
 </template>
 <script setup>
 import { ref, inject, onServerPrefetch, onMounted, watchEffect} from 'vue'
-import product from '../../stores/modules/product'
+import { useNewProduct } from '../../stores/modules/product'
 import axios from 'axios'
-const counterStore = product()
-console.log(112323)
+const counterStore = useNewProduct()
 
-const getSearchesHotWords = () => {
-  inject('$httpApi').searchesHotWords().then(res => {
-    if (res.code === 200) {
-      counterStore.hotWords = res.data.new_hot_words
-    }
-  }).catch(e => {})
-} 
+// const getSearchesHotWords = () => {
+//   inject('$httpApi').searchesHotWords().then(res => {
+//     if (res.code === 200) {
+//       counterStore.hotWords = res.data.new_hot_words
+//     }
+//   }).catch(e => {})
+// } 
 
 
 onMounted (async () => {
@@ -32,9 +31,9 @@ onMounted (async () => {
 })
 
 watchEffect (() => {
-  if (!import.meta.env.SSR) {
-    getSearchesHotWords()
-  }
+  // if (!import.meta.env.SSR) {
+  //   getSearchesHotWords()
+  // }
   // getSearchesHotWords()
 })
 
@@ -44,12 +43,12 @@ const fetchOnServer = async () => {
     counterStore.hotWords = res.data.data.new_hot_words
   })
   // counterStore.name = 'YYYYY'
-  Promise.all([])
+  // Promise.all([])
 }
 onServerPrefetch(async () => {
-  counterStore.name = 'YYYYY'
+  // counterStore.name = 'YYYYY'
   // 组件作为初始请求的一部分被渲染
   // 在服务器上预抓取数据，因为它比在客户端上更快。
-  await fetchOnServer()
+  // await fetchOnServer()
 })
 </script>

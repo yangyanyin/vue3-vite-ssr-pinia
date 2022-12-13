@@ -5,9 +5,10 @@ import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 export const isProd = process.env.NODE_ENV === 'production';
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 async function createServer() {
-  console.log(isProd, 'isProd')
   const app = express()
 
   // 以中间件模式创建 Vite 应用，这将禁用 Vite 自身的 HTML 服务逻辑
@@ -69,8 +70,9 @@ async function createServer() {
       next(e)
     }
   })
-
-  app.listen(5173)
+  const port = 5173
+  // app.listen(5173, () => {console.info('sss')})
+  app.listen(port, () => console.info(`\x1b[42;30m 服务启动成功:\x1b[0;32m \x1b[4m$http://localhost:${port}\x1b[0m`))
 }
 
 createServer()
