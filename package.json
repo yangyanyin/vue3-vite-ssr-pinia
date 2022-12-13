@@ -8,8 +8,9 @@
     "server": "node server/app.js",
     "build": "vite build",
     "preview": "vite preview",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.js "
+    "build:web": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir server/public/client",
+    "build:server": "vite build --ssr src/entry-server.js --outDir server/public/server"
   },
   "dependencies": {
     "@nuxt/devalue": "^2.0.0",

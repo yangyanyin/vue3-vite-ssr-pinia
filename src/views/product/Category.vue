@@ -1,7 +1,6 @@
 <template>
   商品分类
   <br />
-  <!-- <p>{{counterStore.name}}</p> -->
   <p v-for="(item, k) in counterStore.hotWordsList" :key="k">
     {{item.word}}
   </p>
@@ -12,29 +11,11 @@ import { useNewProduct } from '../../stores/modules/product'
 import axios from 'axios'
 const counterStore = useNewProduct()
 
-// const getSearchesHotWords = () => {
-//   inject('$httpApi').searchesHotWords().then(res => {
-//     if (res.code === 200) {
-//       counterStore.hotWords = res.data.new_hot_words
-//     }
-//   }).catch(e => {})
-// } 
-
 
 onMounted (async () => {
-  // if (!HotWords.value) {
-  //   getSearchesHotWords()
-  //   // 如果数据在挂载时为空值，这意味着该组件
-  //   // 是在客户端动态渲染的。将转而执行
-  //   // 另一个客户端侧的抓取请求
-  // }
 })
 
 watchEffect (() => {
-  // if (!import.meta.env.SSR) {
-  //   getSearchesHotWords()
-  // }
-  // getSearchesHotWords()
 })
 
 

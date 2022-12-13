@@ -22,43 +22,6 @@ export default defineConfig(({ command, ssrBuild }) => ({
   plugins: [
     // viteSSR(),
     vuePlugin(),
-    // vueJsx(),
-    {
-      name: 'virtual',
-      resolveId(id) {
-        if (id === '@foo') {
-          return id
-        }
-      },
-      load(id, options) {
-        const ssrFromOptions = options?.ssr ?? false
-        if (id === '@foo') {
-          // Force a mismatch error if ssrBuild is different from ssrFromOptions
-          return `export default { msg: '${
-            command === 'build' && !!ssrBuild !== ssrFromOptions
-              ? `defineConfig ssrBuild !== ssr from load options`
-              : 'hi'
-          }' }`
-        }
-      }
-    },
-    {
-      name: 'virtual-module',
-      resolveId(id) {
-        if (id === virtualFile) {
-          return virtualId
-        } else if (id === nestedVirtualFile) {
-          return nestedVirtualId
-        }
-      },
-      load(id) {
-        if (id === virtualId) {
-          return `export { msg } from "@nested-virtual-file";`
-        } else if (id === nestedVirtualId) {
-          return `export const msg = "[success] from conventional virtual file"`
-        }
-      }
-    },
     // Example of a plugin that injects a helper from a virtual module that can
     // be used in renderBuiltUrl
     (function () {
@@ -120,7 +83,10 @@ export default defineConfig(({ command, ssrBuild }) => ({
     }
   },
   build: {
-    minify: false
+    minify: false,
+    rollupOptions: {
+      input: './src/template/index.html'
+    }
   },
   ssr: {
     noExternal: [
