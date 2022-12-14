@@ -14,16 +14,16 @@
 import { ref } from 'vue'
 const nav = [
   {
-    name: 'Category', 
-    url: '/category/baby'
+    name: '服务端数据渲染', 
+    url: '/server/data'
   },
   {
-    name: 'Product Detail',
-    url: '/product/baby-sgs'
+    name: 'I18n 国际化货币',
+    url: '/i18n/currency'
   },
   {
-    name: 'About Us',
-    url: '/about'
+    name: 'I18n 多语言',
+    url: '/i18n/lang'
   },
   {
     name: 'Terms',

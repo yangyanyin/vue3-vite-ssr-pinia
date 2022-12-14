@@ -4,12 +4,12 @@ const ProductDetail = () => import(/* webpackChunkName: "product" */ '../../view
 
 export default [
   {
-    path: '/category/:c1/:c2?/:c3?/:c4?',
+    path: '/server/data',
     name: 'category',
     component: Category
   },
   {
-    path: '/product/:name',
+    path: '/i18n/currency',
     name: 'product-detail',
     component: ProductDetail
   }

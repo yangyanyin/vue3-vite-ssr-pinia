@@ -4,7 +4,7 @@ const Terms = () => import(/* webpackChunkName: "product" */ '../../views/articl
 
 export default [
   {
-    path: '/about',
+    path: '/i18n/lang',
     name: 'about',
     component: About
   },

@@ -1,7 +1,7 @@
 
 
 <template>
-  <p>{{counterStore.hotWordsList}}</p>
+  <!-- <p>{{counterStore.hotWordsList}}</p> -->
   <Layout>
     <router-view ref="pageComponent"></router-view>
   </Layout>
