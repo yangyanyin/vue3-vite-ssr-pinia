@@ -29,7 +29,7 @@ export default defineStore('counter', {
     async registerUser(login, password) {
       try {
         this.userData = await api.post({ login, password })
-        showTooltip(`Welcome back ${this.userData.name}!`)
+        showTooltip(this.userData.name)
       } catch (error) {
         showTooltip(error)
         // 让表单组件显示错误

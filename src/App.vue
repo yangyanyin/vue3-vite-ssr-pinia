@@ -1,7 +1,6 @@
 
 
 <template>
-  <!-- <p>{{counterStore.hotWordsList}}</p> -->
   <Layout>
     <router-view ref="pageComponent"></router-view>
   </Layout>
@@ -11,6 +10,7 @@
 import { onServerPrefetch, onMounted } from 'vue';
 import Layout from './components/layout/Layout.vue'
 import { useNewProduct } from './stores/modules/product'
+import headSeo from './utils/headSeo'
 import axios from 'axios'
 const counterStore = useNewProduct()
 // onMounted(() => {
@@ -20,7 +20,6 @@ const counterStore = useNewProduct()
 
 const fetchOnServer = async () => {
   await axios.get('https://api.patpat.com/v2/searches/hot_words').then(res => {
-    console.log('请求api获取数据1')
     counterStore.hotWordsList = res.data.data.new_hot_words
   })
   // counterStore.name = 'YYYYY'
@@ -29,6 +28,7 @@ const fetchOnServer = async () => {
 onServerPrefetch(async () => {
   // 组件作为初始请求的一部分被渲染
   // 在服务器上预抓取数据，因为它比在客户端上更快。
+  headSeo()
   await fetchOnServer()
 })
 </script>

@@ -52,10 +52,11 @@ async function createServer() {
         render = (await import('./public/server/entry-server.js')).render
       }
       
-      const [ appHtml, state ] = await render(url)
+      const [ appHtml, state, metaSeo ] = await render(url)
       const html = template
       .replace('<!--ssr-outlet-->', appHtml)  
       .replace("'<!--vuex-state-->'", state)
+      .replace('<!--meta-seo-outlet-->', metaSeo)
 
       // 6. 返回渲染后的 HTML。
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)

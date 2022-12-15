@@ -1,7 +1,6 @@
 import { createApp } from './main'
 
 const { app, router, pinia } = createApp()
-console.log(pinia.state.value, 'pinia')
 if (window.__INITIAL_STATE__) {
   pinia.state.value = window.__INITIAL_STATE__
 }

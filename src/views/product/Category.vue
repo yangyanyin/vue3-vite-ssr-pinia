@@ -9,6 +9,7 @@
 import { ref, inject, onServerPrefetch, onMounted, watchEffect} from 'vue'
 import { useNewProduct } from '../../stores/modules/product'
 import axios from 'axios'
+import headSeo from '@/utils/headSeo'
 const counterStore = useNewProduct()
 
 
@@ -31,5 +32,11 @@ onServerPrefetch(async () => {
   // 组件作为初始请求的一部分被渲染
   // 在服务器上预抓取数据，因为它比在客户端上更快。
   // await fetchOnServer()
+  const option = {
+    title: '服务端渲染 (SSR) SEO',
+    keywords: 'SSR VUE VITE Pinia',
+    description: 'Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组件的职责是在浏览器中生成和操作 DOM。然而，Vue 也支持将组件在服务端直接渲染成 HTML 字符串，作为服务端响应返回给浏览器，最后在浏览器端将静态的 HTML“激活”(hydrate) 为能够交互的客户端应用。'
+  }
+  headSeo(option)
 })
 </script>

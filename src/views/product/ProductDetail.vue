@@ -17,3 +17,17 @@
   <p>{{ $currency.textUts('当前商品价格: $12.343', { locales: 'ja-JP', iso_code: 'JPY' }) }}</p>
   <p>{{ $currency.textUts('当前商品价格: $12.343', { locales: 'en-CA', iso_code: 'CAD' }) }}</p>
 </template>
+<script setup>
+import { ref, inject, onServerPrefetch, onMounted, watchEffect} from 'vue'
+import headSeo from '@/utils/headSeo'
+
+onServerPrefetch(() => {
+  const option = {
+    title: 'Vue I18n',
+    keywords: 'SSR VUE VITE Pinia I18n',
+    description: 'Vue I18n 是 Vue.js 的国际化插件。它可以轻松地将一些本地化功能集成到你的 Vue.js 应用程序中。'
+  }
+  headSeo(option)
+})
+
+</script>
