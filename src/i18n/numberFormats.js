@@ -18,6 +18,9 @@ export default  {
   'zh-HK': {
     currency: {
       style: 'currency', currency: 'HKD', currencyDisplay: 'symbol'
+    },
+    decimal: {
+      style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2
     }
   },
   'en-CA': {

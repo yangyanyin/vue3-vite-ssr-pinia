@@ -1,4 +1,15 @@
 <script>
+
+const currencyMap = {
+  currency: {},
+  countryCurrency: {},
+  countryLangs: {}
+}
+
+const currencyMantissa = {}
+
+const localChangeCurrency = {}
+
 // locales 映射类型，支持自定义传参
 import { h } from 'vue'
 import { useI18n } from 'vue-i18n'
