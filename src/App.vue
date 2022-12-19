@@ -7,15 +7,13 @@
 
 </template>
 <script setup>
-import { onServerPrefetch, onMounted } from 'vue';
+import { onServerPrefetch, getCurrentInstance } from 'vue';
 import Layout from './components/layout/Layout.vue'
 import { useNewProduct } from './stores/modules/product'
-import headSeo from './utils/headSeo'
 import axios from 'axios'
+const { proxy: { $headSeo } } = getCurrentInstance()
 const counterStore = useNewProduct()
-// onMounted(() => {
-//   counterStore.name = 'asdadadadadad'
-// })
+
 
 
 const fetchOnServer = async () => {
@@ -28,7 +26,7 @@ const fetchOnServer = async () => {
 onServerPrefetch(async () => {
   // 组件作为初始请求的一部分被渲染
   // 在服务器上预抓取数据，因为它比在客户端上更快。
-  headSeo()
+  $headSeo()
   await fetchOnServer()
 })
 </script>

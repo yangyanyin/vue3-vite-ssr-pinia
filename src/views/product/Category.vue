@@ -6,11 +6,11 @@
   </p>
 </template>
 <script setup>
-import { ref, inject, onServerPrefetch, onMounted, watchEffect} from 'vue'
+import { ref, inject, onServerPrefetch, onMounted, watchEffect, getCurrentInstance} from 'vue'
 import { useNewProduct } from '../../stores/modules/product'
 import axios from 'axios'
-import headSeo from '@/utils/headSeo'
 const counterStore = useNewProduct()
+const { proxy: { $headSeo } } = getCurrentInstance()
 
 
 onMounted (async () => {
@@ -37,6 +37,6 @@ onServerPrefetch(async () => {
     keywords: 'SSR VUE VITE Pinia',
     description: 'Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组件的职责是在浏览器中生成和操作 DOM。然而，Vue 也支持将组件在服务端直接渲染成 HTML 字符串，作为服务端响应返回给浏览器，最后在浏览器端将静态的 HTML“激活”(hydrate) 为能够交互的客户端应用。'
   }
-  headSeo(option)
+  $headSeo(option)
 })
 </script>

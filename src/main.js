@@ -6,6 +6,8 @@ import apiIndex from '../src/api/index'
 import { createPinia } from 'pinia'
 import i18n from './i18n/index'
 import Currency from './utils/currency'
+import headSeo from './utils/headSeo'
+
 
 
 
@@ -22,5 +24,6 @@ export function createApp() {
   app.use(router)
   app.use(i18n)
   app.config.globalProperties.$currency = Currency
+  app.config.globalProperties.$headSeo = headSeo
   return { app, router, pinia }
 }

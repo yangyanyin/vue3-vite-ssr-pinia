@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "node server/app.js",
+    "server": "cross-env NODE_ENV=development node server/app.js",
+    "server:prod": "cross-env NODE_ENV=production node server/app.js",
     "build": "vite build",
     "preview": "vite preview",
     "build:web": "npm run build:client && npm run build:server",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
     "vite": "^3.2.4"
