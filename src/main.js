@@ -2,7 +2,6 @@
 import { createSSRApp } from 'vue'
 import App from './App.vue'
 import { createRouter } from './router'
-import apiIndex from '../src/api/index'
 import { createPinia } from 'pinia'
 import i18n from './i18n/index'
 import Currency from './utils/currency'
@@ -19,7 +18,6 @@ export function createApp() {
   const pinia = createPinia();
   const app = createSSRApp(App)
   const router = createRouter()
-  app.provide('$httpApi', apiIndex);
   app.use(pinia)
   app.use(router)
   app.use(i18n)

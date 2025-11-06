@@ -31,7 +31,7 @@ async function createServer() {
   }
   
   app.use('/api', createProxyMiddleware({
-    target: 'https://api.patpat.com',
+    target: 'https://api.goldmark-auto.com',
     changeOrigin: true,
     pathRewrite: {
       '^/api': ''
@@ -67,7 +67,7 @@ async function createServer() {
       next(e)
     }
   })
-  const port = 5173
+  const port = 5175
   app.listen(port, () => console.info(`\x1b[42;30m 服务启动成功:\x1b[0;32m \x1b[4m$http://localhost:${port}\x1b[0m`))
 }
 

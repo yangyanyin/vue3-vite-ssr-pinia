@@ -1,28 +1,43 @@
 /**axios封装
  * 请求拦截、相应拦截、错误统一处理
  */
-  import axios from 'axios';
-  import QS from 'qs';
-  // env前端设置请求域名
-  axios.defaults.baseURL = '/api'
+ import axios from 'axios';
+ import QS from 'qs';
+ 
+ // 判断是否在服务端
+ const isServer = typeof window === 'undefined'
+ 
+ // 服务端使用完整的 API 地址，客户端使用代理路径
+ axios.defaults.baseURL = isServer 
+   ? 'https://api.goldmark-auto.com'  // 服务端直接请求目标服务器
+   : '/api'                            // 客户端通过代理
 
-  axios.defaults.withCredentials = true
+ // 客户端才需要 withCredentials
+ if (!isServer) {
+   axios.defaults.withCredentials = true
+ }
 
-  // 请求超时时间
-  axios.defaults.timeout = 10001
+ // 请求超时时间
+ axios.defaults.timeout = 10001
 
-  // post请求头
-  axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+ // post请求头
+ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
-  // 请求拦截器
-  axios.interceptors.request.use(
-    config => {
-      return config;
-    },
-    error => {
-      return Promise.error(error);
-    }
-  );
+// 服务端请求配置：禁用压缩
+if (isServer) {
+  // 直接告诉服务器不要压缩，返回原始数据
+  axios.defaults.headers.common['Accept-Encoding'] = 'identity'
+}
+
+// 请求拦截器
+axios.interceptors.request.use(
+  config => {
+    return config;
+  },
+  error => {
+    return Promise.error(error);
+  }
+);
 
   // 响应拦截器
   axios.interceptors.response.use(response => {

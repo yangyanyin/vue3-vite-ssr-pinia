@@ -14,16 +14,16 @@ const tdkSite = () => {
   return `PatPat ${site}`
 }
 
-import { useNewProduct } from '@/stores/modules/product'
+// import { useNewProduct } from '@/stores/modules/product'
 import { useSSRContext } from 'vue'
 export default (option = {}) => {
   const ctx = useSSRContext()
-  const counterStore = useNewProduct()
+  // const counterStore = useNewProduct()
   // 默认 TKD
   const t = option.title || `嬰童服飾，嬰幼兒用品和親子裝在線購物 | ${tdkSite()}`
   const k = option.keywords || `${tdkSite()}, PatPat Hong Kong, 嬰兒服飾，小童服飾，中大童服飾，親子服飾，嬰兒用品，兒童服飾，童裝，patpat在線商店，童鞋`
   const d = option.description || `在${tdkSite()}選購嬰兒和兒童的優質童裝和鞋襪配飾，親子裝，孕哺裝和家居用品等。每週超值折扣等你享！可愛設計，每日上新，質量保證，低門檻包郵，快速運達。`
-  console.log(counterStore.hotWordsList, 'counterStore')
+  // console.log(counterStore.hotWordsList, 'counterStore')
   ctx.meta  = `
     <title>${t}</title>
     <meta name="keywords" content="${k}" />

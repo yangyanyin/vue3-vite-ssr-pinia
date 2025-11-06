@@ -1,7 +1,8 @@
 <template>
   <header>
     <RouterLink class="logo" to="/">
-      <img src="../../assets/images/header_logo.png" alt="">
+      <!-- <img src="../../assets/images/header
+       _logo.png" alt=""> -->
     </RouterLink>
   </header>
   <nav>
@@ -14,8 +15,8 @@
 import { ref } from 'vue'
 const nav = [
   {
-    name: '服务端数据渲染', 
-    url: '/server/data'
+    name: '首页',
+    url: '/'
   },
   {
     name: 'I18n 国际化货币',
@@ -29,14 +30,6 @@ const nav = [
     name: 'Terms',
     url: '/terms'
   },
-  {
-    name: 'Cart',
-    url: '/order/cart'
-  },
-  {
-    name: 'Checkouts',
-    url: '/order/checkouts'
-  }
 ]
 const items = ref(nav)
 

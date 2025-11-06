@@ -6,7 +6,6 @@ import {
 
 import HomeView from '../views/home/Index.vue'
 import product from './product/index'
-import checkouts from './checkouts/index'
 import article from './article/index'
 
 const home = [
@@ -32,6 +31,6 @@ export function createRouter() {
     // use appropriate history implementation for server/client
     // import.meta.env.SSR is injected by Vite.
     history: import.meta.env.SSR ? createMemoryHistory('/') : createWebHistory('/'),
-    routes: [...home, ...product, ...checkouts, ...article]
+    routes: [...home, ...product,, ...article]
   })
 }
